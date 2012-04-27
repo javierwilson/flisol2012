@@ -1,0 +1,72 @@
+% Hecho para el FLISOL 2012
+% Abril 2012
+% Author: Javier Wilson
+% Guegue Comunicaciones
+% www.guegue.com/~javier/flisol2012
+% https://github.com/javierwilson/flisol2012
+%
+%
+\documentclass{beamer}
+\usetheme{Warsaw}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+\title{Escalando sesiones en aplicaciones web}
+\subtitle{o cómo compartir sesiones entre Django y PHP usando Redis}
+\author{Javier Wilson}
+\date{\today} 
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}\frametitle{Indice de contenido}\tableofcontents
+\end{frame} 
+
+
+\section{Sobre galletas} 
+\begin{frame}\frametitle{Definiendo\ldots}
+\begin{itemize}
+\item Qué es una sesión? \pause
+\item Qué es un cookie o galleta? PIC1 \pause
+\end{itemize} 
+\end{frame}
+
+\begin{frame}\frametitle{Seguridad de galletas}
+Seguridad de galletas\pause
+\begin{itemize}
+\item Contenido proveido por el sitio \pause
+\item Sólo se envía al sitio que la creo \pause
+\item Residen en la máquina del cliente (bajo su control)
+\end{itemize} 
+
+\end{frame}
+
+\begin{frame}\frametitle{Galleta de sesión}
+Que es un session cookie?
+PIC2
+\end{frame}
+
+\section{Más que galletas} 
+\begin{frame}\frametitle{Cuando las típicas cookies no son suficiente}
+\begin{itemize}
+\item Que es escalabilidad? \pause
+\item PHP: usa filesystem \pause
+\item Django: usa BD (django_seession) \pause
+\item Pros vs Cons
+\end{itemize} 
+\end{frame}
+
+\begin{frame}\frametitle{Usando un BD para sesiones}
+Vamos a usar PostgreSQL (porque nos gusta :)
+\begin{itemize}
+Modificando el manejo de sesiones
+Tabla SQL a crear
+Funciones del manejador de funciones
+Una opcion más sencilla
+\end{itemize} 
+
+\end{frame}
+
+\end{document}
