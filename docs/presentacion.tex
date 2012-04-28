@@ -25,48 +25,76 @@
 \end{frame} 
 
 
-\section{Sobre galletas} 
+\section{Intro - Galletas} 
+\subsection{Sobre galletas} 
 \begin{frame}\frametitle{Definiendo\ldots}
 \begin{itemize}
 \item Qué es una sesión? \pause
-\item Qué es un cookie o galleta? PIC1 \pause
+\item Qué es un cookie o galleta? PIC1
 \end{itemize} 
 \end{frame}
 
+\subsection{Seguridad galletas} 
 \begin{frame}\frametitle{Seguridad de galletas}
-Seguridad de galletas\pause
+Seguridad de galletas
 \begin{itemize}
 \item Contenido proveido por el sitio \pause
 \item Sólo se envía al sitio que la creo \pause
 \item Residen en la máquina del cliente (bajo su control)
 \end{itemize} 
-
 \end{frame}
 
+\subsection{Sesiones}
 \begin{frame}\frametitle{Galleta de sesión}
 Que es un session cookie?
 PIC2
 \end{frame}
 
-\section{Más que galletas} 
+\section{Escalabilidad} 
+\subsection{Más que galletas} 
 \begin{frame}\frametitle{Cuando las típicas cookies no son suficiente}
 \begin{itemize}
 \item Que es escalabilidad? \pause
 \item PHP: usa filesystem \pause
-\item Django: usa BD (django_seession) \pause
+\item Django: usa BD (django\_seession) \pause
 \item Pros vs Cons
 \end{itemize} 
 \end{frame}
 
-\begin{frame}\frametitle{Usando un BD para sesiones}
+\subsection{Usando BD para sesiones} 
+\begin{frame}\frametitle{Usando PostgreSQL para sesiones}
 Vamos a usar PostgreSQL (porque nos gusta :)
 \begin{itemize}
-Modificando el manejo de sesiones
-Tabla SQL a crear
-Funciones del manejador de funciones
-Una opcion más sencilla
+\item Modificando el manejo de sesiones \pause
+\item Tabla SQL a crear \pause
+\item Funciones del manejador de funciones \pause
+\item Una opcion más sencilla
 \end{itemize} 
+\end{frame}
 
+\subsection{Buscando alternativa a SQL (NoSQL)} 
+\begin{frame}\frametitle{Buscando alternativa a SQL (NoSQL)}
+\begin{itemize}
+\item Simpleza de un diccionario
+\item Redis
+\end{itemize} 
+\end{frame}
+
+\section{Una propuesta de solución}
+\subsection{Tecnologías a utilizar}
+\begin{frame}\frametitle{Tecnologías a utilizar}
+\begin{itemize}
+\item JSON: Cómo almacenar los datos de sesión
+\item Comenzando con PostgreSQL
+\item Re-utilizando y escribiendo el código
+\item Pasando a Redis\ldots
+\end{itemize} 
+\end{frame}
+
+\subsection{Resultado}
+\begin{frame}\frametitle{Resultado}
+Un screenshot:
+En github: https://github.com/javierwilson/flisol2012
 \end{frame}
 
 \end{document}
