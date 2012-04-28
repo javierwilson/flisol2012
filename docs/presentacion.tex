@@ -10,12 +10,15 @@
 \usetheme{Warsaw}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{hyperref}
 
 \begin{document}
+\titlegraphic{\includegraphics[width=60mm]{imgs/guegueflisol.png}}
 \title{Escalando sesiones en aplicaciones web}
 \subtitle{o cómo compartir sesiones entre Django y PHP usando Redis}
-\author{Javier Wilson}
-\date{\today} 
+\author{Javier Wilson <javier@guegue.net>}
+\institute{Guegue Comunicaciones\\FLISOL 2012}
+\date{\today}
 
 \begin{frame}
 \titlepage
@@ -29,8 +32,14 @@
 \subsection{Sobre galletas} 
 \begin{frame}\frametitle{Definiendo\ldots}
 \begin{itemize}
-\item Qué es una sesión? \pause
-\item Qué es un cookie o galleta? PIC1
+\item Qué es una sesión?
+\begin{block}{\ldots de Wikipedia}
+``En telecomunicaciones, una sesión es una serie de interacciones entre los dos puntos finales de comunicación que se producen durante el lapso de una sola conexión.''  En el web, una sesión es un tipo de galleta (cookie). \pause
+\end{block}
+\item Qué es un cookie o galleta?
+\begin{figure}
+\includegraphics[height=20mm,width=60mm]{imgs/galleta1.png}
+\end{figure}
 \end{itemize} 
 \end{frame}
 
@@ -39,26 +48,29 @@
 Seguridad de galletas
 \begin{itemize}
 \item Contenido proveido por el sitio \pause
-\item Sólo se envía al sitio que la creo \pause
+\item Sólo se envía al sitio que la creó \pause
 \item Residen en la máquina del cliente (bajo su control)
 \end{itemize} 
 \end{frame}
 
 \subsection{Sesiones}
 \begin{frame}\frametitle{Galleta de sesión}
-Que es un session cookie?
-PIC2
+Qué es un session cookie?
+\begin{figure}
+\includegraphics[height=50mm,width=60mm]{imgs/galleta2.png}
+\caption{Ejemplo de una sesión}
+\end{figure}
 \end{frame}
 
 \section{Escalabilidad} 
 \subsection{Más que galletas} 
 \begin{frame}\frametitle{Cuando las típicas cookies no son suficiente}
 \begin{itemize}
-\item Que es escalabilidad? \pause
+\item Qué es escalabilidad? \pause
 \item PHP: usa filesystem \pause
 \item Django: usa BD (django\_seession) \pause
-\item Pros vs Cons
-\end{itemize} 
+\item Pros y Contras
+\end{itemize}
 \end{frame}
 
 \subsection{Usando BD para sesiones} 
@@ -66,17 +78,24 @@ PIC2
 Vamos a usar PostgreSQL (porque nos gusta :)
 \begin{itemize}
 \item Modificando el manejo de sesiones \pause
-\item Tabla SQL a crear \pause
-\item Funciones del manejador de funciones \pause
-\item Una opcion más sencilla
+\item Tabla SQL a crear \\
+\begin{block}{PostgreSQL}
+CREATE TABLE sessions (session\_id varchar(32) PRIMARY KEY, session\_data text, session\_expiration timestamp);
+\end{block}
+\pause
+\item Funciones del manejador de funciones \\
+\url{https://gist.github.com/1776966} \pause
+\item Una opción más sencilla. php.ini: \\
+session.save\_handler = redis
 \end{itemize} 
 \end{frame}
 
 \subsection{Buscando alternativa a SQL (NoSQL)} 
 \begin{frame}\frametitle{Buscando alternativa a SQL (NoSQL)}
 \begin{itemize}
-\item Simpleza de un diccionario
-\item Redis
+\item Simpleza de un diccionario \pause
+\item Berkeley DB no habla TPC/IP (no ``sirve``) \pause
+\item Redis :)
 \end{itemize} 
 \end{frame}
 
@@ -84,17 +103,30 @@ Vamos a usar PostgreSQL (porque nos gusta :)
 \subsection{Tecnologías a utilizar}
 \begin{frame}\frametitle{Tecnologías a utilizar}
 \begin{itemize}
-\item JSON: Cómo almacenar los datos de sesión
-\item Comenzando con PostgreSQL
-\item Re-utilizando y escribiendo el código
+\item Cómo almacenar y compartir datos de sesión: JSON \pause
+\item Comenzando con PostgreSQL \pause
+\item Re-utilizando y escribiendo el código \pause
 \item Pasando a Redis\ldots
 \end{itemize} 
 \end{frame}
 
 \subsection{Resultado}
 \begin{frame}\frametitle{Resultado}
-Un screenshot:
-En github: https://github.com/javierwilson/flisol2012
+Screenshot a la mitad del camino:
+\begin{figure}
+\includegraphics[height=52mm,width=43mm]{imgs/dosgalletas.png}
+\caption{Galletas co-habitando\ldots}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Resultado}
+Screenshot final: 
+\begin{figure}
+\includegraphics[height=30mm,width=83mm]{imgs/phpdjango.png}
+\caption{Probando el código final\ldots}
+\end{figure}
+
+Código: \url{https://github.com/javierwilson/flisol2012}
 \end{frame}
 
 \end{document}
